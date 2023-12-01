@@ -447,6 +447,16 @@
             
             Console.WriteLine("Enter Client ID:");
             int clientId = readInteger(100000, 999999);
+            //for loop to go through the clients to check if id already exists -@Gurleen
+            for (int i = 0; i < client.Length; i++)
+            {
+                if (client[i].UniqueId == clientId)
+                {
+                    Console.WriteLine("Client ID already exists!");
+                    return;
+                }
+            }
+           
             Console.WriteLine("Enter First Name:");
             string firstName = readString();
             Console.WriteLine("Enter Last Name:");
@@ -463,7 +473,7 @@
         {
             Console.WriteLine("Enter Client ID:");
             int clientId = readInteger(100000, 999999);
-            //for loop to go through the products and match -@Gurleen
+            //for loop to go through the clients and match -@Gurleen
             for (int i = 0; i < client.Length; i++)
             {
                 if (client[i].UniqueId == clientId)
