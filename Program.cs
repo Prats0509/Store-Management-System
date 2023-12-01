@@ -716,7 +716,7 @@
         }
         #endregion
 
-        #region App Functionality -@Pratiksha 
+        #region App Functionality (startProgram) -@Pratiksha 
 
         //Core function to run the logic of the App -@Pratiksha (client) -@Gurleen (employee)
         static void startProgram()
