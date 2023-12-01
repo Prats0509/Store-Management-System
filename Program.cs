@@ -384,6 +384,21 @@
 
                 Console.WriteLine("Enter Product ID:");
                 int productId = readInteger(100000, 999999);
+                //for loop to go through the products to check if id already exists -@Gurleen
+                bool existingProductId = false;
+                for (int i = 0; i < client.Length; i++)
+                {
+                    if (product[i].UniqueId == productId)
+                    {
+                        Console.WriteLine("Product ID already exists!");
+                        existingProductId = true;
+                    }
+                }
+                if (existingProductId == true)
+                {
+                    continue;
+                }
+
                 Console.WriteLine("Enter Product Name:");
                 string productName = readString();
                 Console.WriteLine("Enter Subtotal:");
@@ -415,7 +430,7 @@
                     product[i].UnitPrice = readDouble();
                     product[i].QuantityAvailable = readInteger();
                     Console.WriteLine("Enter Quantity Available:");
-                    break;
+                    return;
                 }
             }
             Console.WriteLine("Product not found!");
