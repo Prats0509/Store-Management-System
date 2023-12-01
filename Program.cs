@@ -242,7 +242,7 @@
             Console.WriteLine("8. Display all the sales");
             Console.WriteLine("9. Display total of sales");
             Console.WriteLine("10. Sign Out: to return to the main menu");
-            Console.WriteLine("Please enter the appropriate option (1-3)");
+            Console.WriteLine("Please enter the appropriate option (1-10)");
         }
         #endregion
 
@@ -438,21 +438,21 @@
         {
             if (clientsCount == maxClients)
             {
-                Console.WriteLine("Unable to create more clients, maximum clients reached!");               
+                Console.WriteLine("Unable to create more clients, maximum clients reached!");
+                return;
             }
-            else 
-            { 
-                Console.WriteLine("Enter Client ID:");
-                int clientId = readInteger(100000, 999999);
-                Console.WriteLine("Enter First Name:");
-                string firstName = readString();
-                Console.WriteLine("Enter Last Name:");
-                string lastName = readString();
-                Console.WriteLine("Enter Password:");
-                string password = readString();
-                client[clientsCount] = new Client(clientId, firstName, lastName, password);
-                clientsCount += 1;
-            }
+            
+            Console.WriteLine("Enter Client ID:");
+            int clientId = readInteger(100000, 999999);
+            Console.WriteLine("Enter First Name:");
+            string firstName = readString();
+            Console.WriteLine("Enter Last Name:");
+            string lastName = readString();
+            Console.WriteLine("Enter Password:");
+            string password = readString();
+            client[clientsCount] = new Client(clientId, firstName, lastName, password);
+            clientsCount += 1;
+            
         }
 
         //function to modify a client -@Gurleen
