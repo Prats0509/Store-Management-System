@@ -543,7 +543,7 @@
 
                             productToSell = new Product(productId, productToSell.Name, productToSell.UnitPrice, quantitySold);
                             subtotal += (productToSell.UnitPrice * quantitySold);
-                            productToSell -= quantitySold;
+                            productToSell.QuantityAvailable -= quantitySold;
                             break;
                         }
                     }
