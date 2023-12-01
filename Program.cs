@@ -366,7 +366,7 @@
         }
         #endregion 
 
-        #region Employee Functionality -@Gurleen
+        #region Employee Functionality -@Gurleen and -@Pratiksha
         //function to create products -@Gurleen
         static void createProducts()
         {
@@ -418,10 +418,19 @@
             Console.WriteLine("Product not found!");
         }
 
-        //function to display all products sorted by ID -@Gurleen
+        //function to display all products sorted by ID -@Pratiksha
         static void displayAllProductsSortedByID()
-        {
-            throw new NotImplementedException();
+        {       
+            // Sort the array based on ProductID 
+            Array.Sort(product, (x, y) => x.UniqueId.CompareTo(y.UniqueId));
+
+            // Display the sorted array using a for loop
+            for (int i = 0; i < product.Length; i++)
+            {
+                Product Product = product[i];
+                Console.WriteLine($"ID: {Product.UniqueId}, Name: {Product.Name}, Price: {Product.UnitPrice}, Quantity Available: {Product.QuantityAvailable}");
+            }
+        
         }
 
         //function to create a client -@Gurleen
@@ -429,19 +438,21 @@
         {
             if (clientsCount == maxClients)
             {
-                Console.WriteLine("Unable to create more clients, maximum clients reached!");
-                return;
+                Console.WriteLine("Unable to create more clients, maximum clients reached!");               
             }
-            Console.WriteLine("Enter Client ID:");
-            int clientId = readInteger(100000, 999999);
-            Console.WriteLine("Enter First Name:");
-            string firstName = readString();
-            Console.WriteLine("Enter Last Name:");
-            string lastName = readString();
-            Console.WriteLine("Enter Password:");
-            string password = readString();
-            client[clientsCount] = new Client(clientId, firstName, lastName, password);
-            clientsCount += 1;
+            else 
+            { 
+                Console.WriteLine("Enter Client ID:");
+                int clientId = readInteger(100000, 999999);
+                Console.WriteLine("Enter First Name:");
+                string firstName = readString();
+                Console.WriteLine("Enter Last Name:");
+                string lastName = readString();
+                Console.WriteLine("Enter Password:");
+                string password = readString();
+                client[clientsCount] = new Client(clientId, firstName, lastName, password);
+                clientsCount += 1;
+            }
         }
 
         //function to modify a client -@Gurleen
@@ -455,21 +466,29 @@
                 if (client[i].UniqueId == clientId)
                 {
                     Console.WriteLine("Enter First Name:");
-                    client[i].Name = readString();
+                    client[i].FirstName = readString();
                     Console.WriteLine("Enter Last Name:");
-                    client[i].lastName = readString();
+                    client[i].LastName = readString();
                     Console.WriteLine("Enter Password:");
-                    client[i].password = readString();
+                    client[i].Password = readString();
                     break;
                 }
             }
             Console.WriteLine("Client not found!");
         }
 
-        //function to display all clients sorted by ID -@Gurleen
+        //function to display all clients sorted by ID -@Pratiksha
         static void displayAllClientsSortedByID()
         {
-            throw new NotImplementedException();
+                // Sort the array based on UniqueId using Comparison delegate
+                Array.Sort(client, (x, y) => x.UniqueId.CompareTo(y.UniqueId));
+
+                // Display the sorted array using a for loop
+                for (int i = 0; i < client.Length; i++)
+                {
+                    Client Client = client[i];
+                    Console.WriteLine($"ID: {Client.UniqueId}, Name: {Client.FirstName} {Client.LastName}");
+                }      
         }
 
         //function to sell -@Gurleen
