@@ -629,7 +629,7 @@
                     Console.WriteLine($"  - {product.Name}: ${product.UnitPrice}");
                 }
 
-                Console.WriteLine($"Subtotal: {p.Subtotal:$}, Taxes: {p.Taxes:$}, Total Price: {p.TotalPrice:$}");
+                Console.WriteLine($"Subtotal: ${p.Subtotal}, Taxes: ${p.Taxes}, Total Price: ${p.TotalPrice}");
                 Console.WriteLine();
             }
         }
