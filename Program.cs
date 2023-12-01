@@ -430,7 +430,7 @@
             if (clientsCount == maxClients)
             {
                 Console.WriteLine("Unable to create more clients, maximum clients reached!");
-                break;
+                return;
             }
             Console.WriteLine("Enter Client ID:");
             int clientId = readInteger(100000, 999999);
@@ -475,7 +475,32 @@
         //function to sell -@Gurleen
         static void sell()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Enter Client ID:");
+            int clientId = readInteger(100000, 999999);
+            Client client = null;
+            for (int j = 0; j < client.Length; j++)
+            {
+                if (client[j].UniqueId == clientId) {
+                    client = client[i];
+                    break;
+                }
+            }
+
+            Console.WriteLine("Enter Product ID:");
+            int productId = readInteger(100000, 999999);
+            //for loop to go through the products and match -@Gurleen
+            for (int i = 0; i < product.Length; i++)
+            {
+                if (product[i].UniqueId == productId)
+                {
+                    
+
+                    
+                    break;
+                }
+            }
+            Purchase(Client client, Product[] products, double subtotal, double taxes, double totalPrice)
+            Console.WriteLine("Product not found!");
         }
 
         //function to display all sales -@Gurleen
