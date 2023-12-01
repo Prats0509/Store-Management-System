@@ -161,7 +161,7 @@
             return num >= min && num <= max;
         }
 
-        //Function to read a string or retry is empty or null
+        //Function to read a string or retry is empty or null -@Gurleen
         static string readString()
         {
             string toReturn = null;
@@ -430,7 +430,7 @@
 
                 Console.WriteLine("Enter Product Name:");
                 string productName = readString();
-                Console.WriteLine("Enter Subtotal:");
+                Console.WriteLine("Enter Unit Price:");
                 double unitPrice = readDouble();
                 Console.WriteLine("Enter Quantity Available:");
                 int quantityAvailable = readInteger();
@@ -449,16 +449,16 @@
             Console.WriteLine("Enter Product ID:");
             int productId = readInteger(100000, 999999);
             //for loop to go through the products and match -@Gurleen
-            for (int i = 0; i < product.Length; i++)
+            for (int i = 0; i < productsCount; i++)
             {
                 if (product[i].UniqueId == productId)
                 {
                     Console.WriteLine("Enter Product Name:");
                     product[i].Name = readString();
-                    Console.WriteLine("Enter Subtotal:");
+                    Console.WriteLine("Enter Unit Price:");
                     product[i].UnitPrice = readDouble();
-                    product[i].QuantityAvailable = readInteger();
                     Console.WriteLine("Enter Quantity Available:");
+                    product[i].QuantityAvailable = readInteger();
                     return;
                 }
             }
