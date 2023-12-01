@@ -318,7 +318,8 @@
         {
             Console.WriteLine("List of Products:");
 
-            for (int i = 0; i < product.Length; i++)
+            //check for productsCount products only -@Gurleen
+            for (int i = 0; i < productsCount; i++)
             {
                 Product productInfo = product[i];
                 Console.WriteLine($"ID: {productInfo.UniqueId}, Name: {productInfo.Name}, Price: {productInfo.UnitPrice}, Quantity Available: {productInfo.QuantityAvailable}");
