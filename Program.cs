@@ -77,6 +77,7 @@
         static int productsCount = 0;
         const int maxClients = 10;
         static int clientsCount = 0;
+        // todo: ask how much should be the array size here as it is not mentioned
         const int maxPurchases = 100;
         static int purchasesCount = 0;
 
@@ -87,7 +88,7 @@
         // Array to hold products -@Pratiksha and -@Gurleen
         static Product[] product = new Product[maxProducts];
         // Array to hold sales -@Pratiksha and -@Gurleen
-        static Purchase[] sale = new Purchase[maxPurchases];
+        static Purchase[] purchase = new Purchase[maxPurchases];
 
         // Constants for default data -@Pratiksha
         const int defaultEmployeeId = 111111;
@@ -602,26 +603,26 @@
             // todo: need to ask about how much taxes we need to have
             double taxes = 0.15;
             double totalPrice = subtotal + subtotal * taxes;
-            sale[purchasesCount] = new Purchase(c, productsSold, subtotal, taxes, totalPrice);
+            purchase[purchasesCount] = new Purchase(c, productsSold, subtotal, taxes, totalPrice);
             purchasesCount += 1;
         }
 
         //function to display all sales -@Pratiksha
         static void displayAllSales()
         {
-            for (int i = 0; i < sale.Length; i++)
+            for (int i = 0; i < purchase.Length; i++)
             {
-                var purchase = sale[i];
+                var p = purchase[i];
 
-                Console.WriteLine($"Client: {purchase.Client.FirstName} {purchase.Client.LastName}");
+                Console.WriteLine($"Client: {p.Client.FirstName} {p.Client.LastName}");
                 Console.WriteLine($"Products Purchased:");
-                for (int j = 0; j < purchase.Products.Length; j++)
+                for (int j = 0; j < p.Products.Length; j++)
                 {
-                    var product = purchase.Products[j];
+                    var product = p.Products[j];
                     Console.WriteLine($"  - {product.Name}: ${product.UnitPrice}");
                 }
 
-                Console.WriteLine($"Subtotal: {purchase.Subtotal:$}, Taxes: {purchase.Taxes:$}, Total Price: {purchase.TotalPrice:$}");
+                Console.WriteLine($"Subtotal: {p.Subtotal:$}, Taxes: {p.Taxes:$}, Total Price: {p.TotalPrice:$}");
                 Console.WriteLine();
             }
         }
@@ -630,13 +631,11 @@
         static void displayTotalSales()
         {
             double totalSales = 0;
-
             // Calculate total sales by summing up the TotalPrice of each purchase
-            for (int i = 0; i < sale.Length; i++)
+            for (int i = 0; i < purchasesCount; i++)
             {
-                totalSales += sale[i].TotalPrice;
+                totalSales += purchase[i].TotalPrice;
             }
-
             Console.WriteLine($"Total Sales: ${totalSales}");
         }
 
