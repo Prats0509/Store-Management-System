@@ -600,12 +600,11 @@
             bool exit = false;
             while (!exit)
             {
-
                 //function to client menu -@Gurleen
                 displayEmployeeMenu();
 
-                //read the choice between 1 and 3 from the menu -@Gurleen
-                int getChoice = readInteger(1, 3);
+                //read the choice between 1 and 10 from the menu -@Gurleen
+                int getChoice = readInteger(1, 10);
 
                 //switch statement for handling client functions -@Gurleen
                 switch (getChoice)
