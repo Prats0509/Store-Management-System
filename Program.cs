@@ -373,7 +373,7 @@
         static void createProducts()
         {
             string createProducts = "YES";
-            while (createProducts == "YES")
+            while ("YES".Equals(createProducts))
             {
                 if (productsCount == maxProducts)
                 {
@@ -647,16 +647,19 @@
         }
         #endregion 
 
-        #region Exit Application Functionality -@Pratiksha
-        //Function to safely exit the application with confirmation -@Pratiksha
+        #region Exit Application Functionality -@Pratiksha and -@Gurleen
+        //Function to safely exit the application with confirmation -@Pratiksha and -@Gurleen
         static void exit()
         {
             Console.WriteLine("Are you sure you want to exit? (Type Yes)");
             string input = readString().ToUpper();
-            if (input == "YES")
+            if ("YES".Equals(input))
             {
                 Console.WriteLine("Exiting the application...");
                 Environment.Exit(0);
+            } else
+            {
+                startProgram();
             }
         }
         #endregion
@@ -709,7 +712,6 @@
             }
             else
             {
-                Console.WriteLine("Exiting the application");
                 exit();
             }
 
