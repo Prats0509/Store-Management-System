@@ -74,18 +74,20 @@
         #region Array Storage and constants -@Pratiksha and -@Gurleen
         // Constants and Variables for default data -@Gurleen
         const int maxProducts = 100;
-        const int maxClients = 10;
         static int productsCount = 0;
+        const int maxClients = 10;
         static int clientsCount = 0;
+        const int maxPurchases = 100;
+        static int purchasesCount = 0;
 
         // Variable to store employee -@Gurleen
         static Employee employee;
         // Array to hold clients -@Pratiksha and -@Gurleen
         static Client[] client = new Client[maxClients];
-        // Array to hold products -@Pratiksha
+        // Array to hold products -@Pratiksha and -@Gurleen
         static Product[] product = new Product[maxProducts];
-        // Array to hold sales -@Pratiksha
-        static Purchase[] sale = new Purchase[100];
+        // Array to hold sales -@Pratiksha and -@Gurleen
+        static Purchase[] sale = new Purchase[maxPurchases];
 
         // Constants for default data -@Pratiksha
         const int defaultEmployeeId = 111111;
@@ -385,8 +387,8 @@
                 string productName = readString();
                 Console.WriteLine("Enter Subtotal:");
                 double unitPrice = readDouble();
-                int quantityAvailable = readInteger();
                 Console.WriteLine("Enter Quantity Available:");
+                int quantityAvailable = readInteger();
                 product[productsCount] = new Product(productId, productName, unitPrice, quantityAvailable);
                 productsCount += 1;
 
@@ -494,32 +496,66 @@
         //function to sell -@Gurleen
         static void sell()
         {
+            if (purchasesCount == maxPurchases)
+            {
+                Console.WriteLine("Unable to create another purchase, maximum purchases reached!");
+                return;
+            }
+
             Console.WriteLine("Enter Client ID:");
             int clientId = readInteger(100000, 999999);
-            Client client = null;
+            Client c = null;
+            //for loop to go through clients to search the correct client -@Gurleen
             for (int j = 0; j < client.Length; j++)
             {
                 if (client[j].UniqueId == clientId) {
-                    client = client[i];
+                    c = client[j];
                     break;
                 }
             }
-
-            Console.WriteLine("Enter Product ID:");
-            int productId = readInteger(100000, 999999);
-            //for loop to go through the products and match -@Gurleen
-            for (int i = 0; i < product.Length; i++)
+            if (c.FirstName == null)
             {
-                if (product[i].UniqueId == productId)
-                {
-                    
+                Console.WriteLine("Client not found!");
+                return;
+            }
 
-                    
-                    break;
+            double subtotal = 0;
+            Console.WriteLine("Enter number of products sold:");
+            int numOfProductsSold = readInteger(1, maxProducts);
+            Product[] productsSold = new Product[numOfProductsSold];
+            for (int i = 0; i < numOfProductsSold; i++)  
+            {
+                Product productToSell = null;
+                while (productToSell.Name == null)
+                {
+                    Console.WriteLine("Enter Product ID:");
+                    int productId = readInteger(100000, 999999);
+                    //for loop to go through the products and match -@Gurleen
+                    for (int j = 0; j < product.Length; j++)
+                    {
+                        if (product[j].UniqueId == productId)
+                        {
+                            productToSell = product[j];
+                            int quantityAvailable = productToSell.QuantityAvailable;
+
+                            Console.WriteLine("Enter Quantity Available:");
+                            int quantitySold = readInteger(1, quantityAvailable);
+
+                            productToSell = new Product(productId, productToSell.Name, productToSell.UnitPrice, quantitySold);
+                            subtotal += (productToSell.UnitPrice * quantitySold);
+                            break;
+                        }
+                    }
+                    if (productToSell.Name == null)
+                        Console.WriteLine("Product not found, please try again.");
                 }
             }
-            Purchase(Client client, Product[] products, double subtotal, double taxes, double totalPrice)
-            Console.WriteLine("Product not found!");
+
+            // todo: need to ask about how much taxes we need to have
+            double taxes = 0;
+            double totalPrice = subtotal + subtotal * taxes;
+            sale[purchasesCount] = new Purchase(c, productsSold, subtotal, taxes, totalPrice);
+            purchasesCount += 1;
         }
 
         //function to display all sales -@Pratiksha
