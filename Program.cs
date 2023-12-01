@@ -341,7 +341,7 @@
 
             for (int i = 0; i < purchasesCount; i++)
             {
-                var p = purchase[i];
+                Purchase p = purchase[i];
 
                 // Check if the purchase belongs to the specified client
                 if (p.Client.UniqueId == client.UniqueId)
@@ -350,7 +350,7 @@
                     Console.WriteLine($"Client: {p.Client.FirstName} {p.Client.LastName}");
                     Console.WriteLine($"Products Purchased:");
 
-                    foreach (var product in p.Products)
+                    foreach (Product product in p.Products)
                     {
                         Console.WriteLine($"  - {product.Name}: ${product.UnitPrice} x {product.QuantityAvailable}");
                     }
@@ -619,13 +619,13 @@
         {
             for (int i = 0; i < purchasesCount; i++)
             {
-                var p = purchase[i];
+                Purchase p = purchase[i];
 
                 Console.WriteLine($"Client: {p.Client.FirstName} {p.Client.LastName}");
                 Console.WriteLine($"Products Purchased:");
                 for (int j = 0; j < p.Products.Length; j++)
                 {
-                    var product = p.Products[j];
+                    Product product = p.Products[j];
                     Console.WriteLine($"  - {product.Name}: ${product.UnitPrice}");
                 }
 
