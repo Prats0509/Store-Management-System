@@ -543,6 +543,7 @@
 
                             productToSell = new Product(productId, productToSell.Name, productToSell.UnitPrice, quantitySold);
                             subtotal += (productToSell.UnitPrice * quantitySold);
+                            productToSell -= quantitySold;
                             break;
                         }
                     }
@@ -552,7 +553,7 @@
             }
 
             // todo: need to ask about how much taxes we need to have
-            double taxes = 0;
+            double taxes = 0.15;
             double totalPrice = subtotal + subtotal * taxes;
             sale[purchasesCount] = new Purchase(c, productsSold, subtotal, taxes, totalPrice);
             purchasesCount += 1;
