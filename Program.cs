@@ -522,16 +522,38 @@
             Console.WriteLine("Product not found!");
         }
 
-        //function to display all sales -@Gurleen
+        //function to display all sales -@Pratiksha
         static void displayAllSales()
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < sale.Length; i++)
+            {
+                var purchase = sale[i];
+
+                Console.WriteLine($"Client: {purchase.Client.FirstName} {purchase.Client.LastName}");
+                Console.WriteLine($"Products Purchased:");
+                for (int j = 0; j < purchase.Products.Length; j++)
+                {
+                    var product = purchase.Products[j];
+                    Console.WriteLine($"  - {product.Name}: ${product.UnitPrice}");
+                }
+
+                Console.WriteLine($"Subtotal: {purchase.Subtotal:$}, Taxes: {purchase.Taxes:$}, Total Price: {purchase.TotalPrice:$}");
+                Console.WriteLine();
+            }
         }
 
         //function to display total sales -@Gurleen
         static void displayTotalSales()
         {
-            throw new NotImplementedException();
+            double totalSales = 0;
+
+            // Calculate total sales by summing up the TotalPrice of each purchase
+            for (int i = 0; i < sale.Length; i++)
+            {
+                totalSales += sale[i].TotalPrice;
+            }
+
+            Console.WriteLine($"Total Sales: ${totalSales}");
         }
 
 
