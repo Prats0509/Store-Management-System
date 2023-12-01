@@ -204,6 +204,13 @@
             // Initialize default clients count -@Gurleen
             clientsCount = 1;
 
+            // Initialize default purchases
+            Product[] defaultPurchase = { product[0], product[1], product[2] };
+            purchase[0] = new Purchase(client[0], defaultPurchase, 100, 15, 115);
+
+            //Initialize default purchase count
+            purchasesCount = 1;
+
         }
         #endregion
 
@@ -465,7 +472,7 @@
             Array.Sort(product, (x, y) => x.UniqueId.CompareTo(y.UniqueId));
 
             // Display the sorted array using a for loop
-            for (int i = 0; i < product.Length; i++)
+            for (int i = 0; i < productsCount; i++)
             {
                 Product Product = product[i];
                 Console.WriteLine($"ID: {Product.UniqueId}, Name: {Product.Name}, Price: {Product.UnitPrice}, Quantity Available: {Product.QuantityAvailable}");
@@ -534,7 +541,7 @@
                 Array.Sort(client, (x, y) => x.UniqueId.CompareTo(y.UniqueId));
 
                 // Display the sorted array using a for loop
-                for (int i = 0; i < client.Length; i++)
+                for (int i = 0; i < clientsCount; i++)
                 {
                     Client Client = client[i];
                     Console.WriteLine($"ID: {Client.UniqueId}, Name: {Client.FirstName} {Client.LastName}");
@@ -610,7 +617,7 @@
         //function to display all sales -@Pratiksha
         static void displayAllSales()
         {
-            for (int i = 0; i < purchase.Length; i++)
+            for (int i = 0; i < purchasesCount; i++)
             {
                 var p = purchase[i];
 
