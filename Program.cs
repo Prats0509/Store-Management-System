@@ -504,7 +504,7 @@
 
             Console.WriteLine("Enter Client ID:");
             int clientId = readInteger(100000, 999999);
-            Client c = null;
+            Client c = new Client { UniqueId = 0 };
             //for loop to go through clients to search the correct client -@Gurleen
             for (int j = 0; j < client.Length; j++)
             {
@@ -513,7 +513,7 @@
                     break;
                 }
             }
-            if (c.FirstName == null)
+            if (c.UniqueId == 0)
             {
                 Console.WriteLine("Client not found!");
                 return;
@@ -525,8 +525,8 @@
             Product[] productsSold = new Product[numOfProductsSold];
             for (int i = 0; i < numOfProductsSold; i++)  
             {
-                Product productToSell = null;
-                while (productToSell.Name == null)
+                Product productToSell = new Product { UniqueId = 0 };
+                while (productToSell.UniqueId == 0)
                 {
                     Console.WriteLine("Enter Product ID:");
                     int productId = readInteger(100000, 999999);
