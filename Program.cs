@@ -476,7 +476,7 @@
             // Display the sorted array using a for loop
             for (int i = 0; i < product.Length; i++)
             {
-                if (product[i].UniqueId != 0)
+                if (product[i].UniqueId != 0) //to filter out the empty product elements since the size is 100
                 {
                     Product Product = product[i];
                     Console.WriteLine($"ID: {Product.UniqueId}, Name: {Product.Name}, Price: {Product.UnitPrice}, Quantity Available: {Product.QuantityAvailable}");
