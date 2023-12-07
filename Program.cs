@@ -370,6 +370,12 @@
 
             while (!Exit)
             {
+                //Display Employee name - @Pratiksha
+                Console.WriteLine($"Client Logged In : {client.FirstName} {client.LastName} ");
+
+                //Display date - @Pratiksha
+                DateTime date = DateTime.Today;
+                Console.WriteLine($"Date: {date.ToString("dd/MM/yyyy")}");
 
                 //function to client menu -@Pratiksha
                 DisplayClientMenu();
@@ -448,23 +454,56 @@
         //function to modify one product -@Gurleen
         static void ModifyOneProduct()
         {
-            Console.WriteLine("Enter Product ID:");
-            int productId = ReadInteger(100000, 999999);
-            //for loop to go through the products and match -@Gurleen
-            for (int i = 0; i < product.Length; i++)
+            Console.WriteLine("Please type ID/NAME to search by:");
+            string searchBy = ReadString().ToUpper();
+            if(searchBy == "ID")
             {
-                if (product[i].UniqueId == productId)
+                Console.WriteLine("Enter Product ID:");
+                int productId = ReadInteger(100000, 999999);
+
+                //for loop to go through the products and match -@Gurleen and -Pratiksha
+                for (int i = 0; i < product.Length; i++)
                 {
-                    Console.WriteLine("Enter Product Name:");
-                    product[i].Name = ReadString();
-                    Console.WriteLine("Enter Unit Price:");
-                    product[i].UnitPrice = ReadDouble();
-                    Console.WriteLine("Enter Quantity Available:");
-                    product[i].QuantityAvailable = ReadInteger();
-                    return;
+                    if (product[i].UniqueId == productId)
+                    {
+                        Console.WriteLine("Enter Product Name:");
+                        product[i].Name = ReadString();
+                        Console.WriteLine("Enter Unit Price:");
+                        product[i].UnitPrice = ReadDouble();
+                        Console.WriteLine("Enter Quantity Available:");
+                        product[i].QuantityAvailable = ReadInteger();
+                        return;
+                    }
                 }
+                Console.WriteLine("Product not found!");
             }
-            Console.WriteLine("Product not found!");
+            else if(searchBy == "NAME")
+            {
+                Console.WriteLine("Enter Product Name:");
+                string name = ReadString();
+
+                //for loop to go through the products and match -@Gurleen and -Pratiksha
+                for (int i = 0; i < product.Length; i++)
+                {
+                    if (product[i].Name == name)
+                    {
+                        Console.WriteLine("Enter Product Name:");
+                        product[i].Name = ReadString();
+                        Console.WriteLine("Enter Unit Price:");
+                        product[i].UnitPrice = ReadDouble();
+                        Console.WriteLine("Enter Quantity Available:");
+                        product[i].QuantityAvailable = ReadInteger();
+                        return;
+                    }
+                }
+                Console.WriteLine("Product not found!");
+            }
+            else {
+                Console.WriteLine("Please enter only ID or NAME");
+                return;
+            }
+            
+           
         }
 
         //function to display all products sorted by ID -@Pratiksha
@@ -674,6 +713,13 @@
             bool Exit = false;
             while (!Exit)
             {
+                //Display Employee name - @Pratiksha
+                Console.WriteLine($"EmployeeID : {employee.UniqueId}");
+
+                //Display date - @Pratiksha
+                DateTime date = DateTime.Today;
+                Console.WriteLine($"Date: {date.ToString("dd/MM/yyyy")}");
+
                 //function to client menu -@Gurleen
                 DisplayEmployeeMenu();
 
