@@ -448,7 +448,7 @@
             Console.WriteLine("Enter Product ID:");
             int productId = ReadInteger(100000, 999999);
             //for loop to go through the products and match -@Gurleen
-            for (int i = 0; i < productsCount; i++)
+            for (int i = 0; i < product.Length; i++)
             {
                 if (product[i].UniqueId == productId)
                 {
@@ -471,10 +471,13 @@
             Array.Sort(product, (x, y) => x.UniqueId.CompareTo(y.UniqueId));
 
             // Display the sorted array using a for loop
-            for (int i = 0; i < productsCount; i++)
+            for (int i = 0; i < product.Length; i++)
             {
-                Product Product = product[i];
-                Console.WriteLine($"ID: {Product.UniqueId}, Name: {Product.Name}, Price: {Product.UnitPrice}, Quantity Available: {Product.QuantityAvailable}");
+                if (product[i].UniqueId != 0)
+                {
+                    Product Product = product[i];
+                    Console.WriteLine($"ID: {Product.UniqueId}, Name: {Product.Name}, Price: {Product.UnitPrice}, Quantity Available: {Product.QuantityAvailable}");
+                }
             }
         
         }
@@ -517,7 +520,7 @@
             Console.WriteLine("Enter Client ID:");
             int clientId = ReadInteger(100000, 999999);
             //for loop to go through the clients and match -@Gurleen
-            for (int i = 0; i < clientsCount; i++)
+            for (int i = 0; i < client.Length; i++)
             {
                 if (client[i].UniqueId == clientId)
                 {
@@ -539,11 +542,14 @@
                 // Sort the array based on UniqueId using Comparison delegate
                 Array.Sort(client, (x, y) => x.UniqueId.CompareTo(y.UniqueId));
 
-                // Display the sorted array using a for loop
-                for (int i = 0; i < clientsCount; i++)
-                {                
+            // Display the sorted array using a for loop
+            for (int i = 0; i < client.Length; i++)
+            {
+                if (client[i].UniqueId != 0)
+                {
                     Console.WriteLine($"ID: {client[i].UniqueId}, Name: {client[i].FirstName} {client[i].LastName}");
-                }      
+                }
+            }
         }
 
         //function to Sell -@Gurleen and -@Pratiksha
@@ -559,7 +565,7 @@
             int clientId = ReadInteger(100000, 999999);
             Client c = new Client { UniqueId = 0 };// creating a new blank client element
             //for loop to go through clients to search the correct client -@Gurleen
-            for (int j = 0; j < clientsCount; j++)
+            for (int j = 0; j < client.Length; j++)
             {
                 if (client[j].UniqueId == clientId) {
                     c = client[j]; //storing the matched client in the new Client element
