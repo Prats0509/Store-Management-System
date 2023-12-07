@@ -329,8 +329,7 @@
             //check for productsCount products only -@Gurleen
             for (int i = 0; i < productsCount; i++)
             {
-                Product productInfo = product[i];
-                Console.WriteLine($"ID: {productInfo.UniqueId}, Name: {productInfo.Name}, Price: {productInfo.UnitPrice}, Quantity Available: {productInfo.QuantityAvailable}");
+                Console.WriteLine($"ID: {product[i].UniqueId}, Name: {product[i].Name}, Price: {product[i].UnitPrice}, Quantity Available: {product[i].QuantityAvailable}");
             }
         }
 
@@ -403,7 +402,7 @@
         static void createProducts()
         {
             string createProducts = "YES";
-            while ("YES".Equals(createProducts))
+            while (createProducts == "YES")
             {
                 if (productsCount == maxProducts)
                 {
@@ -486,7 +485,7 @@
             if (clientsCount == maxClients)
             {
                 Console.WriteLine("Unable to create more clients, maximum clients reached!");
-                return;
+                return; // exiting the function
             }
             
             Console.WriteLine("Enter Client ID:");
@@ -518,7 +517,7 @@
             Console.WriteLine("Enter Client ID:");
             int clientId = readInteger(100000, 999999);
             //for loop to go through the clients and match -@Gurleen
-            for (int i = 0; i < client.Length; i++)
+            for (int i = 0; i < clientsCount; i++)
             {
                 if (client[i].UniqueId == clientId)
                 {
@@ -542,13 +541,12 @@
 
                 // Display the sorted array using a for loop
                 for (int i = 0; i < clientsCount; i++)
-                {
-                    Client Client = client[i];
-                    Console.WriteLine($"ID: {Client.UniqueId}, Name: {Client.FirstName} {Client.LastName}");
+                {                
+                    Console.WriteLine($"ID: {client[i].UniqueId}, Name: {client[i].FirstName} {client[i].LastName}");
                 }      
         }
 
-        //function to sell -@Gurleen
+        //function to sell -@Gurleen and -@Pratiksha
         static void sell()
         {
             if (purchasesCount == maxPurchases)
@@ -559,12 +557,12 @@
 
             Console.WriteLine("Enter Client ID:");
             int clientId = readInteger(100000, 999999);
-            Client c = new Client { UniqueId = 0 };
+            Client c = new Client { UniqueId = 0 };// creating a new blank client element
             //for loop to go through clients to search the correct client -@Gurleen
-            for (int j = 0; j < client.Length; j++)
+            for (int j = 0; j < clientsCount; j++)
             {
                 if (client[j].UniqueId == clientId) {
-                    c = client[j];
+                    c = client[j]; //storing the matched client in the new Client element
                     break;
                 }
             }
@@ -578,39 +576,52 @@
             Console.WriteLine("Enter number of products sold:");
             int numOfProductsSold = readInteger(1, maxProducts);
             Product[] productsSold = new Product[numOfProductsSold];
+            int sold_count = 0;
             for (int i = 0; i < numOfProductsSold; i++)  
             {
+                
                 Product productToSell = new Product { UniqueId = 0 };
                 while (productToSell.UniqueId == 0)
                 {
+                    
                     Console.WriteLine("Enter Product ID:");
                     int productId = readInteger(100000, 999999);
                     //for loop to go through the products and match -@Gurleen
                     for (int j = 0; j < product.Length; j++)
                     {
+                        
                         if (product[j].UniqueId == productId)
                         {
                             productToSell = product[j];
                             int quantityAvailable = productToSell.QuantityAvailable;
-
-                            Console.WriteLine("Enter Quantity Available:");
-                            int quantitySold = readInteger(1, quantityAvailable);
-
-                            productToSell = new Product(productId, productToSell.Name, productToSell.UnitPrice, quantitySold);
-                            subtotal += (productToSell.UnitPrice * quantitySold);
-                            productToSell.QuantityAvailable -= quantitySold;
-                            break;
+                            if (quantityAvailable <= 0)
+                            {
+                                Console.WriteLine("Quantity not Available");
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Enter Quantity Available:");
+                                int quantitySold = readInteger(1, quantityAvailable);
+                                // calling the parameterised constructor to fill the values
+                                productToSell = new Product(productId, productToSell.Name, productToSell.UnitPrice, quantitySold);
+                                productsSold[sold_count] = productToSell;
+                                sold_count += 1;
+                                subtotal += (productToSell.UnitPrice * quantitySold);
+                                productToSell.QuantityAvailable -= quantitySold;
+                                break;
+                            }
                         }
                     }
                     if (productToSell.Name == null)
-                        Console.WriteLine("Product not found, please try again.");
+                        Console.WriteLine("Product not found or quantity not available, please try again.");
                 }
             }
 
             // todo: need to ask about how much taxes we need to have
             double taxes = 0.15;
             double totalPrice = subtotal + subtotal * taxes;
-            purchase[purchasesCount] = new Purchase(c, productsSold, subtotal, taxes, totalPrice);
+            purchase[purchasesCount] = new Purchase(c, productsSold, subtotal, taxes, totalPrice);// store at the next available purchase slot
             purchasesCount += 1;
         }
 
@@ -619,17 +630,16 @@
         {
             for (int i = 0; i < purchasesCount; i++)
             {
-                Purchase p = purchase[i];
-
-                Console.WriteLine($"Client: {p.Client.FirstName} {p.Client.LastName}");
+                //client element and array of product elements is accessed (to be printed)
+                Console.WriteLine($"Client: {purchase[i].Client.FirstName} {purchase[i].Client.LastName}");
                 Console.WriteLine($"Products Purchased:");
-                for (int j = 0; j < p.Products.Length; j++)
+                for (int j = 0; j < purchase[i].Products.Length; j++)
                 {
-                    Product product = p.Products[j];
-                    Console.WriteLine($"  - {product.Name}: ${product.UnitPrice}");
+                    
+                    Console.WriteLine($"  - {purchase[i].Products[j].Name}: ${purchase[i].Products[j].UnitPrice} Qty: ${purchase[i].Products[j].QuantityAvailable}");
                 }
 
-                Console.WriteLine($"Subtotal: ${p.Subtotal}, Taxes: ${p.Taxes}, Total Price: ${p.TotalPrice}");
+                Console.WriteLine($"Subtotal: ${purchase[i].Subtotal}, Taxes: ${purchase[i].Taxes}, Total Price: ${purchase[i].TotalPrice}");
                 Console.WriteLine();
             }
         }
