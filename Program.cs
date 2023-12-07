@@ -327,9 +327,12 @@
             Console.WriteLine("List of Products:");
 
             //check for productsCount products only -@Gurleen
-            for (int i = 0; i < productsCount; i++)
+            for (int i = 0; i < product.Length; i++)
             {
-                Console.WriteLine($"ID: {product[i].UniqueId}, Name: {product[i].Name}, Price: {product[i].UnitPrice}, Quantity Available: {product[i].QuantityAvailable}");
+                if (product[i].UniqueId != 0)
+                {
+                    Console.WriteLine($"ID: {product[i].UniqueId}, Name: {product[i].Name}, Price: {product[i].UnitPrice}, Quantity Available: {product[i].QuantityAvailable}");
+                }
             }
         }
 
@@ -345,13 +348,13 @@
                 // Check if the purchase belongs to the specified client
                 if (p.Client.UniqueId == client.UniqueId)
                 {
-                    
+
                     Console.WriteLine($"Client: {p.Client.FirstName} {p.Client.LastName}");
                     Console.WriteLine($"Products Purchased:");
 
                     foreach (Product product in p.Products)
                     {
-                        Console.WriteLine($"  - {product.Name}: ${product.UnitPrice} x {product.QuantityAvailable}");
+                        Console.WriteLine($"  - {product.Name}: ${product.UnitPrice} x Qty:{product.QuantityAvailable}");
                     }
 
                     Console.WriteLine($"Subtotal: ${p.Subtotal}, Taxes: ${p.Taxes}, Total Price: ${p.TotalPrice}");
@@ -466,7 +469,7 @@
 
         //function to display all products sorted by ID -@Pratiksha
         static void DisplayAllProductsSortedByID()
-        {       
+        {
             // Sort the array based on ProductID 
             Array.Sort(product, (x, y) => x.UniqueId.CompareTo(y.UniqueId));
 
@@ -479,7 +482,7 @@
                     Console.WriteLine($"ID: {Product.UniqueId}, Name: {Product.Name}, Price: {Product.UnitPrice}, Quantity Available: {Product.QuantityAvailable}");
                 }
             }
-        
+
         }
 
         //function to create a client -@Gurleen
@@ -490,7 +493,7 @@
                 Console.WriteLine("Unable to create more clients, maximum clients reached!");
                 return; // Exiting the function
             }
-            
+
             Console.WriteLine("Enter Client ID:");
             int clientId = ReadInteger(100000, 999999);
             //for loop to go through the clients to check if id already exists -@Gurleen
@@ -502,16 +505,16 @@
                     return;
                 }
             }
-           
+
             Console.WriteLine("Enter First Name:");
             string firstName = ReadString();
             Console.WriteLine("Enter Last Name:");
             string lastName = ReadString();
             Console.WriteLine("Enter Password:");
-            string password = ReadString();
+            string password = GetPassword();
             client[clientsCount] = new Client(clientId, firstName, lastName, password);
             clientsCount += 1;
-            
+
         }
 
         //function to modify a client -@Gurleen
@@ -529,7 +532,7 @@
                     Console.WriteLine("Enter Last Name:");
                     client[i].LastName = ReadString();
                     Console.WriteLine("Enter Password:");
-                    client[i].Password = ReadString();
+                    client[i].Password = GetPassword();
                     break;
                 }
             }
@@ -539,8 +542,8 @@
         //function to display all clients sorted by ID -@Pratiksha
         static void DisplayAllClientsSortedByID()
         {
-                // Sort the array based on UniqueId using Comparison delegate
-                Array.Sort(client, (x, y) => x.UniqueId.CompareTo(y.UniqueId));
+            // Sort the array based on UniqueId using Comparison delegate
+            Array.Sort(client, (x, y) => x.UniqueId.CompareTo(y.UniqueId));
 
             // Display the sorted array using a for loop
             for (int i = 0; i < client.Length; i++)
@@ -567,7 +570,8 @@
             //for loop to go through clients to search the correct client -@Gurleen
             for (int j = 0; j < client.Length; j++)
             {
-                if (client[j].UniqueId == clientId) {
+                if (client[j].UniqueId == clientId)
+                {
                     c = client[j]; //storing the matched client in the new Client element
                     break;
                 }
@@ -583,19 +587,19 @@
             int numOfProductsSold = ReadInteger(1, maxProducts);
             Product[] productsSold = new Product[numOfProductsSold];
             int sold_count = 0;
-            for (int i = 0; i < numOfProductsSold; i++)  
+            for (int i = 0; i < numOfProductsSold; i++)
             {
-                
+
                 Product productToSell = new Product { UniqueId = 0 };
                 while (productToSell.UniqueId == 0)
                 {
-                    
+
                     Console.WriteLine("Enter Product ID:");
                     int productId = ReadInteger(100000, 999999);
                     //for loop to go through the products and match -@Gurleen
                     for (int j = 0; j < product.Length; j++)
                     {
-                        
+
                         if (product[j].UniqueId == productId)
                         {
                             productToSell = product[j];
@@ -607,14 +611,15 @@
                             }
                             else
                             {
-                                Console.WriteLine("Enter Quantity Available:");
+                                Console.WriteLine("Enter Quantity Sold:");
                                 int quantitySold = ReadInteger(1, quantityAvailable);
                                 // calling the parameterised constructor to fill the values
                                 productToSell = new Product(productId, productToSell.Name, productToSell.UnitPrice, quantitySold);
                                 productsSold[sold_count] = productToSell;
                                 sold_count += 1;
                                 subtotal += (productToSell.UnitPrice * quantitySold);
-                                productToSell.QuantityAvailable -= quantitySold;
+                                product[j].QuantityAvailable -= quantitySold;// decrease quantity form product array
+
                                 break;
                             }
                         }
@@ -641,8 +646,8 @@
                 Console.WriteLine($"Products Purchased:");
                 for (int j = 0; j < purchase[i].Products.Length; j++)
                 {
-                    
-                    Console.WriteLine($"  - {purchase[i].Products[j].Name}: ${purchase[i].Products[j].UnitPrice} Qty: ${purchase[i].Products[j].QuantityAvailable}");
+
+                    Console.WriteLine($"  - {purchase[i].Products[j].Name}: ${purchase[i].Products[j].UnitPrice} x Qty: {purchase[i].Products[j].QuantityAvailable}");
                 }
 
                 Console.WriteLine($"Subtotal: ${purchase[i].Subtotal}, Taxes: ${purchase[i].Taxes}, Total Price: ${purchase[i].TotalPrice}");
@@ -725,7 +730,8 @@
             {
                 Console.WriteLine("Exiting the application...");
                 Environment.Exit(0);
-            } else
+            }
+            else
             {
                 StartProgram();
             }
