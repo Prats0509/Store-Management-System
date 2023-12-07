@@ -56,7 +56,9 @@ Author: Pratiksha Dutta and Gurleen Kaur Matta
 - Display all products sorted by ID.
 - Create, modify clients.
 - Display all clients sorted by ID.
-- Sell products, display all sales, display total sales.
+- Sell products.
+- Display all sales.
+- Display total sales.
 - Employee menu handling for respective functionalities.
 
 ## Exit Application Functionality
