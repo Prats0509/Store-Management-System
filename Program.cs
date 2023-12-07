@@ -100,7 +100,7 @@
 
         #region Input Validations -@Pratiksha 
         //Function to read an Integer , if not retry with error message
-        static int readInteger()
+        static int ReadInteger()
         {
             int toReturn = 0;
             while (!Int32.TryParse(Console.ReadLine(), out toReturn))
@@ -112,26 +112,26 @@
         }
 
         //Function to ReadInteger within a range
-        static int readInteger(int min, int max)
+        static int ReadInteger(int min, int max)
         {
-            int toReturn = readInteger();
-            while (!isWithinRange(toReturn, min, max))
+            int toReturn = ReadInteger();
+            while (!IsWithinRange(toReturn, min, max))
             {
                 Console.Write($"The value must be between {min} and {max}. Please try again: ");
-                toReturn = readInteger();
+                toReturn = ReadInteger();
             }
 
             return toReturn;
         }
 
         //Function to check if in range
-        static bool isWithinRange(int num, int min, int max)
+        static bool IsWithinRange(int num, int min, int max)
         {
             return num >= min && num <= max;
         }
 
         //Function to read a double
-        static double readDouble()
+        static double ReadDouble()
         {
             double toReturn = 0;
             while (!Double.TryParse(Console.ReadLine(), out toReturn))
@@ -143,26 +143,26 @@
         }
 
         //Function to read a double in a range
-        static double readDouble(double min, double max)
+        static double ReadDouble(double min, double max)
         {
-            double toReturn = readDouble();
-            while (!isWithinRange(toReturn, min, max))
+            double toReturn = ReadDouble();
+            while (!IsWithinRange(toReturn, min, max))
             {
                 Console.Write($"The value must be between {min} and {max}. Please try again: ");
-                toReturn = readDouble();
+                toReturn = ReadDouble();
             }
 
             return toReturn;
         }
 
         //Function to check if double is within the range
-        static bool isWithinRange(double num, double min, double max)
+        static bool IsWithinRange(double num, double min, double max)
         {
             return num >= min && num <= max;
         }
 
         //Function to read a string or retry is empty or null -@Gurleen
-        static string readString()
+        static string ReadString()
         {
             string toReturn = null;
             do
@@ -178,7 +178,7 @@
         #endregion
 
         #region Initialize default data -@Pratiksha and -@Gurleen
-        static void initializeDefaultData()
+        static void InitializeDefaultData()
         {
             // Initialize default employee -@Gurleen
             employee = new Employee(defaultEmployeeId, defaultEmployeePassword);
@@ -216,7 +216,7 @@
 
         #region Menu Displays -@Pratiksha and -@Gurleen
         //function to display the main menu lines -@Pratiksha
-        static void displayMainMenu()
+        static void DisplayMainMenu()
         {
             Console.Clear();
             Console.WriteLine("1.Sign In");
@@ -224,14 +224,14 @@
             Console.WriteLine("Please enter the appropriate option");
         }
         //function to display the role menu lines -@Pratiksha
-        static void displayRoleMenu()
+        static void DisplayRoleMenu()
         {
             Console.WriteLine("1.Employee");
             Console.WriteLine("2.Client");
             Console.WriteLine("Please enter the appropriate option");
         }
         //function to display the client menu lines -@Pratiksha
-        static void displayClientMenu()
+        static void DisplayClientMenu()
         {
             Console.WriteLine("1.Display all products");
             Console.WriteLine("2.Display purchases");
@@ -240,7 +240,7 @@
         }
 
         //function to display the employee menu lines -@Gurleen
-        static void displayEmployeeMenu()
+        static void DisplayEmployeeMenu()
         {
             Console.WriteLine("1. Create products");
             Console.WriteLine("2. Modify one product");
@@ -258,7 +258,7 @@
 
         #region Client Verification -@Pratiksha
         //function to get the password from console and verify length -@Pratiksha
-        static string getPassword()
+        static string GetPassword()
         {
             {
                 string toReturn = null;
@@ -273,15 +273,15 @@
         /** function to check the unique ID and password and return
         the client if found or return a client with ID 0  -@Pratiksha
         **/
-        static Client verifyClient()
+        static Client VerifyClient()
         {
             Console.WriteLine("Enter Client ID:");
             //read an interger between 100000 and 999999 -@Pratiksha
-            int clientId = readInteger(100000, 999999);
+            int clientId = ReadInteger(100000, 999999);
 
             //read a string which is not empty or null -@Pratiksha
             Console.WriteLine("Enter Password:");
-            string password = getPassword();
+            string password = GetPassword();
 
             //for loop to go throught the record and match -@Pratiksha
             for (int i = 0; i < client.Length; i++)
@@ -300,15 +300,15 @@
         /** function to check the unique ID and password and return
         the employee if found or return a employee with ID 0  -@Gurleen
         **/
-        static Employee verifyEmployee()
+        static Employee VerifyEmployee()
         {
             Console.WriteLine("Enter Employee ID:");
             //read an interger between 100000 and 999999 -@Gurleen
-            int employeeId = readInteger(100000, 999999);
+            int employeeId = ReadInteger(100000, 999999);
 
             //read a string which is not empty or null -@Gurleen
             Console.WriteLine("Enter Password:");
-            string password = getPassword();
+            string password = GetPassword();
 
             //Verify the employee record and match -@Gurleen
             if (employeeId == defaultEmployeeId && password == defaultEmployeePassword)
@@ -322,7 +322,7 @@
 
         #region Client Functionality -@Pratiksha
         //function to display all products -@Pratiksha
-        static void displayAllProducts()
+        static void DisplayAllProducts()
         {
             Console.WriteLine("List of Products:");
 
@@ -334,7 +334,7 @@
         }
 
         //function to display purchases -@Pratiksha
-        static void displayPurchases(Client client)
+        static void DisplayPurchases(Client client)
         {
             Console.WriteLine($"Purchases for Client: {client.FirstName} {client.LastName}");
 
@@ -361,48 +361,48 @@
         }
 
         //function to display Client Menu and perform client functions -@Pratiksha
-        static void handleClientFunctionality(Client client)
+        static void HandleClientFunctionality(Client client)
         {
-            bool exit = false;
+            bool Exit = false;
 
-            while (!exit)
+            while (!Exit)
             {
 
                 //function to client menu -@Pratiksha
-                displayClientMenu();
+                DisplayClientMenu();
 
                 //read the choice between 1 and 3 from the menu -@Pratiksha
-                int getChoice = readInteger(1, 3);
+                int getChoice = ReadInteger(1, 3);
 
                 //switch statement for handling client functions -@Pratikha
                 switch (getChoice)
                 {
                     case 1:
-                        displayAllProducts();
+                        DisplayAllProducts();
                         break;
                     case 2:
-                        displayPurchases(client);
+                        DisplayPurchases(client);
                         break;
                     case 3:
-                        exit = true;
+                        Exit = true;
                         Console.WriteLine("Signing out....");
                         break;
                 }
             }
-            if (exit)
+            if (Exit)
             {
                 // return to main menu after signing out -@Pratikha
-                startProgram();
+                StartProgram();
             }
         }
         #endregion 
 
         #region Employee Functionality -@Gurleen and -@Pratiksha
         //function to create products -@Gurleen
-        static void createProducts()
+        static void CreateProducts()
         {
-            string createProducts = "YES";
-            while (createProducts == "YES")
+            string CreateProducts = "YES";
+            while (CreateProducts == "YES")
             {
                 if (productsCount == maxProducts)
                 {
@@ -411,7 +411,7 @@
                 }
 
                 Console.WriteLine("Enter Product ID:");
-                int productId = readInteger(100000, 999999);
+                int productId = ReadInteger(100000, 999999);
                 //for loop to go through the products to check if id already exists -@Gurleen
                 bool existingProductId = false;
                 for (int i = 0; i < client.Length; i++)
@@ -428,36 +428,36 @@
                 }
 
                 Console.WriteLine("Enter Product Name:");
-                string productName = readString();
+                string productName = ReadString();
                 Console.WriteLine("Enter Unit Price:");
-                double unitPrice = readDouble();
+                double unitPrice = ReadDouble();
                 Console.WriteLine("Enter Quantity Available:");
-                int quantityAvailable = readInteger();
+                int quantityAvailable = ReadInteger();
                 product[productsCount] = new Product(productId, productName, unitPrice, quantityAvailable);
                 productsCount += 1;
 
                 Console.WriteLine("Do you want to create more products (Type Yes):");
-                createProducts = readString().ToUpper();
+                CreateProducts = ReadString().ToUpper();
             }
 
         }
 
         //function to modify one product -@Gurleen
-        static void modifyOneProduct()
+        static void ModifyOneProduct()
         {
             Console.WriteLine("Enter Product ID:");
-            int productId = readInteger(100000, 999999);
+            int productId = ReadInteger(100000, 999999);
             //for loop to go through the products and match -@Gurleen
             for (int i = 0; i < productsCount; i++)
             {
                 if (product[i].UniqueId == productId)
                 {
                     Console.WriteLine("Enter Product Name:");
-                    product[i].Name = readString();
+                    product[i].Name = ReadString();
                     Console.WriteLine("Enter Unit Price:");
-                    product[i].UnitPrice = readDouble();
+                    product[i].UnitPrice = ReadDouble();
                     Console.WriteLine("Enter Quantity Available:");
-                    product[i].QuantityAvailable = readInteger();
+                    product[i].QuantityAvailable = ReadInteger();
                     return;
                 }
             }
@@ -465,7 +465,7 @@
         }
 
         //function to display all products sorted by ID -@Pratiksha
-        static void displayAllProductsSortedByID()
+        static void DisplayAllProductsSortedByID()
         {       
             // Sort the array based on ProductID 
             Array.Sort(product, (x, y) => x.UniqueId.CompareTo(y.UniqueId));
@@ -480,16 +480,16 @@
         }
 
         //function to create a client -@Gurleen
-        static void createAClient()
+        static void CreateAClient()
         {
             if (clientsCount == maxClients)
             {
                 Console.WriteLine("Unable to create more clients, maximum clients reached!");
-                return; // exiting the function
+                return; // Exiting the function
             }
             
             Console.WriteLine("Enter Client ID:");
-            int clientId = readInteger(100000, 999999);
+            int clientId = ReadInteger(100000, 999999);
             //for loop to go through the clients to check if id already exists -@Gurleen
             for (int i = 0; i < client.Length; i++)
             {
@@ -501,32 +501,32 @@
             }
            
             Console.WriteLine("Enter First Name:");
-            string firstName = readString();
+            string firstName = ReadString();
             Console.WriteLine("Enter Last Name:");
-            string lastName = readString();
+            string lastName = ReadString();
             Console.WriteLine("Enter Password:");
-            string password = readString();
+            string password = ReadString();
             client[clientsCount] = new Client(clientId, firstName, lastName, password);
             clientsCount += 1;
             
         }
 
         //function to modify a client -@Gurleen
-        static void modifyAClient()
+        static void ModifyAClient()
         {
             Console.WriteLine("Enter Client ID:");
-            int clientId = readInteger(100000, 999999);
+            int clientId = ReadInteger(100000, 999999);
             //for loop to go through the clients and match -@Gurleen
             for (int i = 0; i < clientsCount; i++)
             {
                 if (client[i].UniqueId == clientId)
                 {
                     Console.WriteLine("Enter First Name:");
-                    client[i].FirstName = readString();
+                    client[i].FirstName = ReadString();
                     Console.WriteLine("Enter Last Name:");
-                    client[i].LastName = readString();
+                    client[i].LastName = ReadString();
                     Console.WriteLine("Enter Password:");
-                    client[i].Password = readString();
+                    client[i].Password = ReadString();
                     break;
                 }
             }
@@ -534,7 +534,7 @@
         }
 
         //function to display all clients sorted by ID -@Pratiksha
-        static void displayAllClientsSortedByID()
+        static void DisplayAllClientsSortedByID()
         {
                 // Sort the array based on UniqueId using Comparison delegate
                 Array.Sort(client, (x, y) => x.UniqueId.CompareTo(y.UniqueId));
@@ -546,8 +546,8 @@
                 }      
         }
 
-        //function to sell -@Gurleen and -@Pratiksha
-        static void sell()
+        //function to Sell -@Gurleen and -@Pratiksha
+        static void Sell()
         {
             if (purchasesCount == maxPurchases)
             {
@@ -556,7 +556,7 @@
             }
 
             Console.WriteLine("Enter Client ID:");
-            int clientId = readInteger(100000, 999999);
+            int clientId = ReadInteger(100000, 999999);
             Client c = new Client { UniqueId = 0 };// creating a new blank client element
             //for loop to go through clients to search the correct client -@Gurleen
             for (int j = 0; j < clientsCount; j++)
@@ -574,7 +574,7 @@
 
             double subtotal = 0;
             Console.WriteLine("Enter number of products sold:");
-            int numOfProductsSold = readInteger(1, maxProducts);
+            int numOfProductsSold = ReadInteger(1, maxProducts);
             Product[] productsSold = new Product[numOfProductsSold];
             int sold_count = 0;
             for (int i = 0; i < numOfProductsSold; i++)  
@@ -585,7 +585,7 @@
                 {
                     
                     Console.WriteLine("Enter Product ID:");
-                    int productId = readInteger(100000, 999999);
+                    int productId = ReadInteger(100000, 999999);
                     //for loop to go through the products and match -@Gurleen
                     for (int j = 0; j < product.Length; j++)
                     {
@@ -602,7 +602,7 @@
                             else
                             {
                                 Console.WriteLine("Enter Quantity Available:");
-                                int quantitySold = readInteger(1, quantityAvailable);
+                                int quantitySold = ReadInteger(1, quantityAvailable);
                                 // calling the parameterised constructor to fill the values
                                 productToSell = new Product(productId, productToSell.Name, productToSell.UnitPrice, quantitySold);
                                 productsSold[sold_count] = productToSell;
@@ -626,7 +626,7 @@
         }
 
         //function to display all sales -@Pratiksha
-        static void displayAllSales()
+        static void DisplayAllSales()
         {
             for (int i = 0; i < purchasesCount; i++)
             {
@@ -645,7 +645,7 @@
         }
 
         //function to display total sales -@Gurleen
-        static void displayTotalSales()
+        static void DisplayTotalSales()
         {
             double totalSales = 0;
             // Calculate total sales by summing up the TotalPrice of each purchase
@@ -658,115 +658,115 @@
 
 
         //function to display Employee Menu and perform employee functions -@Gurleen
-        static void handleEmployeeFunctionality(Employee employee)
+        static void HandleEmployeeFunctionality(Employee employee)
         {
-            bool exit = false;
-            while (!exit)
+            bool Exit = false;
+            while (!Exit)
             {
                 //function to client menu -@Gurleen
-                displayEmployeeMenu();
+                DisplayEmployeeMenu();
 
                 //read the choice between 1 and 10 from the menu -@Gurleen
-                int getChoice = readInteger(1, 10);
+                int getChoice = ReadInteger(1, 10);
 
                 //switch statement for handling client functions -@Gurleen
                 switch (getChoice)
                 {
                     case 1:
-                        createProducts();
+                        CreateProducts();
                         break;
                     case 2:
-                        modifyOneProduct();
+                        ModifyOneProduct();
                         break;
                     case 3:
-                        displayAllProductsSortedByID();
+                        DisplayAllProductsSortedByID();
                         break;
                     case 4:
-                        createAClient();
+                        CreateAClient();
                         break;
                     case 5:
-                        modifyAClient();
+                        ModifyAClient();
                         break;
                     case 6:
-                        displayAllClientsSortedByID();
+                        DisplayAllClientsSortedByID();
                         break;
                     case 7:
-                        sell();
+                        Sell();
                         break;
                     case 8:
-                        displayAllSales();
+                        DisplayAllSales();
                         break;
                     case 9:
-                        displayTotalSales();
+                        DisplayTotalSales();
                         break;
                     case 10:
-                        exit = true;
+                        Exit = true;
                         Console.WriteLine("Signing out....");
                         break;
                 }
             }
-            startProgram();
+            StartProgram();
         }
         #endregion 
 
         #region Exit Application Functionality -@Pratiksha and -@Gurleen
-        //Function to safely exit the application with confirmation -@Pratiksha and -@Gurleen
-        static void exit()
+        //Function to safely Exit the application with confirmation -@Pratiksha and -@Gurleen
+        static void Exit()
         {
-            Console.WriteLine("Are you sure you want to exit? (Type Yes)");
-            string input = readString().ToUpper();
+            Console.WriteLine("Are you sure you want to Exit? (Type Yes)");
+            string input = ReadString().ToUpper();
             if ("YES".Equals(input))
             {
                 Console.WriteLine("Exiting the application...");
                 Environment.Exit(0);
             } else
             {
-                startProgram();
+                StartProgram();
             }
         }
         #endregion
 
-        #region App Functionality (startProgram) -@Pratiksha 
+        #region App Functionality (StartProgram) -@Pratiksha 
 
         //Core function to run the logic of the App -@Pratiksha (client) -@Gurleen (employee)
-        static void startProgram()
+        static void StartProgram()
         {
             //display the main menu and take the inputs  -@Pratiksha
-            displayMainMenu();
-            int choiceMainMenu = readInteger(1, 2);
+            DisplayMainMenu();
+            int choiceMainMenu = ReadInteger(1, 2);
             if (choiceMainMenu == 1)
             {
                 //display the role menu and take the inputs  -@Pratiksha
-                displayRoleMenu();
-                int roleChoice = readInteger(1, 2);
+                DisplayRoleMenu();
+                int roleChoice = ReadInteger(1, 2);
                 if (roleChoice == 1)
                 {
                     // display employee and functions -@Gurleen
-                    Employee employee = verifyEmployee();
+                    Employee employee = VerifyEmployee();
                     if (employee.UniqueId != 0)
                     {
                         //handle the employee functionalities with menu -@Gurleen
-                        handleEmployeeFunctionality(employee);
+                        HandleEmployeeFunctionality(employee);
                     }
                     else
                     {
                         Console.WriteLine("Failed to authenticate user");
-                        startProgram();
+                        StartProgram();
                     }
                 }
                 else if (roleChoice == 2)
                 {
                     //verify the client by password -@Pratiksha
-                    Client client = verifyClient();
+                    Client client = VerifyClient();
                     if (client.UniqueId != 0)
                     {
                         //handle the client functioanlities with menu -@Pratiksha
-                        handleClientFunctionality(client);
+                        HandleClientFunctionality(client);
                     }
                     else
                     {
                         Console.WriteLine("Failed to authenticate user");
-                        startProgram();
+                        StartProgram();
                     }
 
                 }
@@ -774,7 +774,7 @@
             }
             else
             {
-                exit();
+                Exit();
             }
 
         }
@@ -782,9 +782,9 @@
 
         static void Main(string[] args)
         {
-            initializeDefaultData();
+            InitializeDefaultData();
 
-            startProgram();
+            StartProgram();
         }
     }
 
