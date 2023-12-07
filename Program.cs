@@ -73,27 +73,27 @@
     {
         #region Array Storage and constants -@Pratiksha and -@Gurleen
         // Constants and Variables for default data -@Gurleen
-        const int maxProducts = 100;
+        const int MAXPRODUCTS = 100;
         static int productsCount = 0;
-        const int maxClients = 10;
+        const int MAXCLIENTS = 10;
         static int clientsCount = 0;
         // todo: ask how much should be the array size here as it is not mentioned
-        const int maxPurchases = 100;
+        const int MAXPURCHASES = 100;
         static int purchasesCount = 0;
 
         // Variable to store employee -@Gurleen
         static Employee employee;
         // Array to hold clients -@Pratiksha and -@Gurleen
-        static Client[] client = new Client[maxClients];
+        static Client[] client = new Client[MAXCLIENTS];
         // Array to hold products -@Pratiksha and -@Gurleen
-        static Product[] product = new Product[maxProducts];
+        static Product[] product = new Product[MAXPRODUCTS];
         // Array to hold sales -@Pratiksha and -@Gurleen
-        static Purchase[] purchase = new Purchase[maxPurchases];
+        static Purchase[] purchase = new Purchase[MAXPURCHASES];
 
         // Constants for default data -@Pratiksha
-        const int defaultEmployeeId = 111111;
-        const string defaultEmployeePassword = "tester";
-        const string defaultClientPassword = "clientPass";
+        const int DEFAULTEMPLOYEEID = 111111;
+        const string DEFAULTEMPLOYEEPASSWORD = "tester";
+        const string DEFAULTCLIENTPASSWORD = "clientPass";
 
 
         #endregion 
@@ -181,7 +181,7 @@
         static void InitializeDefaultData()
         {
             // Initialize default employee -@Gurleen
-            employee = new Employee(defaultEmployeeId, defaultEmployeePassword);
+            employee = new Employee(DEFAULTEMPLOYEEID, DEFAULTEMPLOYEEPASSWORD);
 
             // Initialize default products -@Pratiksha
             product[0] = new Product(100001, "Product 1", 10.99, 50);
@@ -196,7 +196,7 @@
             product[9] = new Product(100010, "Product 10", 9.99, 70);
 
             // Initialize default client -@Pratiksha
-            client[0] = new Client(100001, "Default", "Client", defaultClientPassword);
+            client[0] = new Client(100001, "Default", "Client", DEFAULTCLIENTPASSWORD);
 
             // Initialize default products count -@Gurleen
             productsCount = 10;
@@ -311,7 +311,7 @@
             string password = GetPassword();
 
             //Verify the employee record and match -@Gurleen
-            if (employeeId == defaultEmployeeId && password == defaultEmployeePassword)
+            if (employeeId == DEFAULTEMPLOYEEID && password == DEFAULTEMPLOYEEPASSWORD)
             {
                 return employee; // Return verified client -@Gurleen
             }
@@ -407,7 +407,7 @@
             string CreateProducts = "YES";
             while (CreateProducts == "YES")
             {
-                if (productsCount == maxProducts)
+                if (productsCount == MAXPRODUCTS)
                 {
                     Console.WriteLine("Unable to create more products, maximum products reached!");
                     break;
@@ -488,7 +488,7 @@
         //function to create a client -@Gurleen
         static void CreateAClient()
         {
-            if (clientsCount == maxClients)
+            if (clientsCount == MAXCLIENTS)
             {
                 Console.WriteLine("Unable to create more clients, maximum clients reached!");
                 return; // Exiting the function
@@ -558,7 +558,7 @@
         //function to Sell -@Gurleen and -@Pratiksha
         static void Sell()
         {
-            if (purchasesCount == maxPurchases)
+            if (purchasesCount == MAXPURCHASES)
             {
                 Console.WriteLine("Unable to create another purchase, maximum purchases reached!");
                 return;
@@ -584,7 +584,7 @@
 
             double subtotal = 0;
             Console.WriteLine("Enter number of products sold:");
-            int numOfProductsSold = ReadInteger(1, maxProducts);
+            int numOfProductsSold = ReadInteger(1, MAXPRODUCTS);
             Product[] productsSold = new Product[numOfProductsSold];
             int sold_count = 0;
             for (int i = 0; i < numOfProductsSold; i++)
