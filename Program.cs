@@ -206,7 +206,7 @@
 
             // Initialize default purchases
             Product[] defaultPurchase = { product[0], product[1], product[2] };
-            purchase[0] = new Purchase(client[0], defaultPurchase, 100, 15, 115);
+            purchase[0] = new Purchase(client[0], defaultPurchase, 909.25, 136.39, 1045.64);
 
             //Initialize default purchase count
             purchasesCount = 1;
