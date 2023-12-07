@@ -1,4 +1,4 @@
-﻿namespace Store_Dutta_Kaur
+﻿namespace Store_Dutta_Matta
 {
     #region Structs -@Pratiksha
 
