@@ -18,7 +18,7 @@ Author: Pratiksha Dutta and Gurleen Kaur Matta
 - `MAXCLIENTS`: Maximum number of clients stored.
 - `MAXPURCHASES`: Maximum number of purchases stored.
 - `productsCount`, `clientsCount`, `purchasesCount`: Track the count of products, clients, and purchases.
-- Employee `employee` : Hold employee information.
+- Employee `employee` : Holds employee information.
 - Arrays:
   - `client[]`: Holds client information.
   - `product[]`: Holds product information.
