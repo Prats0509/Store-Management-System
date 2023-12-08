@@ -352,7 +352,7 @@
                     Console.WriteLine($"Client: {purchase[i].Client.FirstName} {purchase[i].Client.LastName}");
                     Console.WriteLine($"Products Purchased:");
 
-                    foreach (Product product in purchase[i].Products)
+                    foreach (Product product in purchase[i].Products)//looping over the products inside the current purchase
                     {
                         Console.WriteLine($"  - {product.Name}: ${product.UnitPrice} x Qty:{product.QuantityAvailable}");
                     }
@@ -366,11 +366,11 @@
         //function to display Client Menu and perform client functions -@Pratiksha
         static void HandleClientFunctionality(Client client)
         {
-            bool Exit = false;
+            bool exit = false;
 
-            while (!Exit)
+            while (!exit)
             {
-                //Display Employee name - @Pratiksha
+                //Display Logged in Client name - @Pratiksha
                 Console.WriteLine($"Client Logged In : {client.FirstName} {client.LastName} ");
 
                 //Display date - @Pratiksha
@@ -393,12 +393,12 @@
                         DisplayPurchases(client);
                         break;
                     case 3:
-                        Exit = true;
+                        exit = true;
                         Console.WriteLine("Signing out....");
                         break;
                 }
             }
-            if (Exit)
+            if (exit)
             {
                 // return to main menu after signing out -@Pratikha
                 StartProgram();
@@ -423,7 +423,7 @@
                 int productId = ReadInteger(100000, 999999);
                 //for loop to go through the products to check if id already exists -@Gurleen
                 bool existingProductId = false;
-                for (int i = 0; i < client.Length; i++)
+                for (int i = 0; i < product.Length; i++)
                 {
                     if (product[i].UniqueId == productId)
                     {
@@ -572,7 +572,7 @@
                     client[i].LastName = ReadString();
                     Console.WriteLine("Enter Password:");
                     client[i].Password = GetPassword();
-                    break;
+                    return;
                 }
             }
             Console.WriteLine("Client not found!");
@@ -581,13 +581,13 @@
         //function to display all clients sorted by ID -@Pratiksha
         static void DisplayAllClientsSortedByID()
         {
-            // Sort the array based on UniqueId using Comparison delegate
+            // Sort the client array based on UniqueId using Comparison 
             Array.Sort(client, (x, y) => x.UniqueId.CompareTo(y.UniqueId));
 
             // Display the sorted array using a for loop
             for (int i = 0; i < client.Length; i++)
             {
-                if (client[i].UniqueId != 0)
+                if (client[i].UniqueId != 0)// when we create a new array by default the value in the id of the array is 0
                 {
                     Console.WriteLine($"ID: {client[i].UniqueId}, Name: {client[i].FirstName} {client[i].LastName}");
                 }
@@ -605,7 +605,7 @@
 
             Console.WriteLine("Enter Client ID:");
             int clientId = ReadInteger(100000, 999999);
-            Client c = new Client { UniqueId = 0 };// creating a new blank client element
+            Client c = new Client { UniqueId = 0 };// creating a new temp blank client element
             //for loop to go through clients to search the correct client -@Gurleen
             for (int j = 0; j < client.Length; j++)
             {
@@ -630,7 +630,7 @@
             {
 
                 Product productToSell = new Product { UniqueId = 0 };
-                while (productToSell.UniqueId == 0)
+                while (productToSell.UniqueId == 0)//since creating the producttosell element again and again
                 {
 
                     Console.WriteLine("Enter Product ID:");
@@ -639,7 +639,7 @@
                     for (int j = 0; j < product.Length; j++)
                     {
 
-                        if (product[j].UniqueId == productId)
+                        if (product[j].UniqueId == productId)//searching for that product from the global product array
                         {
                             productToSell = product[j];
                             int quantityAvailable = productToSell.QuantityAvailable;
@@ -650,14 +650,14 @@
                             }
                             else
                             {
-                                Console.WriteLine("Enter Quantity Sold:");
+                                Console.WriteLine("Enter individual product quantity sold:");
                                 int quantitySold = ReadInteger(1, quantityAvailable);
                                 // calling the parameterised constructor to fill the values
                                 productToSell = new Product(productId, productToSell.Name, productToSell.UnitPrice, quantitySold);
                                 productsSold[sold_count] = productToSell;
                                 sold_count += 1;
                                 subtotal += (productToSell.UnitPrice * quantitySold);
-                                product[j].QuantityAvailable -= quantitySold;// decrease quantity form product array
+                                product[j].QuantityAvailable -= quantitySold;// decrease quantity from global product array
 
                                 break;
                             }
@@ -668,7 +668,7 @@
                 }
             }
 
-            // todo: need to ask about how much taxes we need to have
+            // tax is considered to be 15%
             double taxes = 0.15;
             double totalPrice = subtotal + subtotal * taxes;
             purchase[purchasesCount] = new Purchase(c, productsSold, subtotal, taxes, totalPrice);// store at the next available purchase slot
@@ -683,7 +683,7 @@
                 //client element and array of product elements is accessed (to be printed)
                 Console.WriteLine($"Client: {purchase[i].Client.FirstName} {purchase[i].Client.LastName}");
                 Console.WriteLine($"Products Purchased:");
-                for (int j = 0; j < purchase[i].Products.Length; j++)
+                for (int j = 0; j < purchase[i].Products.Length; j++)//products of the current purchase bill
                 {
 
                     Console.WriteLine($"  - {purchase[i].Products[j].Name}: ${purchase[i].Products[j].UnitPrice} x Qty: {purchase[i].Products[j].QuantityAvailable}");
@@ -713,7 +713,7 @@
             bool Exit = false;
             while (!Exit)
             {
-                //Display Employee name - @Pratiksha
+                //DNo name for the employee so displaying Employee ID - @Pratiksha
                 Console.WriteLine($"EmployeeID : {employee.UniqueId}");
 
                 //Display date - @Pratiksha
