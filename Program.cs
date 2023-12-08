@@ -264,6 +264,7 @@
                 string toReturn = null;
                 while (String.IsNullOrEmpty(toReturn) || toReturn.Length < 6 || toReturn.Length > 10)
                 {
+                    Console.WriteLine("There is an error with the password");
                     toReturn = Console.ReadLine();
                 }
 
