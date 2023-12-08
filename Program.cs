@@ -772,7 +772,7 @@
         {
             Console.WriteLine("Are you sure you want to Exit? (Type Yes)");
             string input = ReadString().ToUpper();
-            if ("YES".Equals(input))
+            if (input == "YES")
             {
                 Console.WriteLine("Exiting the application...");
                 Environment.Exit(0);
