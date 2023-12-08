@@ -342,7 +342,7 @@
         {
             Console.WriteLine($"Purchases for Client: {client.FirstName} {client.LastName}");
 
-            for (int i = 0; i < purchasesCount; i++)
+            for (int i = 0; i < purchasesCount; i++) { 
             
 
                 // Check if the purchase belongs to the specified client
