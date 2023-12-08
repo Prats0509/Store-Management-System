@@ -1,6 +1,12 @@
 
 # Store Dutta Matta
 Author: Pratiksha Dutta and Gurleen Kaur Matta
+## Note:
+- The point of entry : StartProgram() function
+- Added name after logging (Bonus)
+- Added current date after logging (Bonus)
+- Added modify a product using Name/ID (Bonus)
+
 ## Structs
 
 - **Employee**
