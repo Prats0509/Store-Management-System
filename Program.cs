@@ -260,16 +260,15 @@
         //function to get the password from console and verify length -@Pratiksha
         static string GetPassword()
         {
+            string toReturn = null;
+            do
             {
-                string toReturn = null;
-                while (String.IsNullOrEmpty(toReturn) || toReturn.Length < 6 || toReturn.Length > 10)
-                {
-                    Console.WriteLine("There is an error with the password");
-                    toReturn = Console.ReadLine();
-                }
+                toReturn = Console.ReadLine();
+                if (toReturn == null || toReturn.Length < 6 || toReturn.Length > 10)
+                    Console.Write("Invalid string value, please try again: ");
+            } while (String.IsNullOrEmpty(toReturn) || toReturn.Length < 6 || toReturn.Length > 10);
 
-                return toReturn;
-            }
+            return toReturn;
         }
         /** function to check the unique ID and password and return
         the client if found or return a client with ID 0  -@Pratiksha
@@ -342,8 +341,9 @@
         {
             Console.WriteLine($"Purchases for Client: {client.FirstName} {client.LastName}");
 
-            for (int i = 0; i < purchasesCount; i++) { 
-            
+            for (int i = 0; i < purchasesCount; i++)
+            {
+
 
                 // Check if the purchase belongs to the specified client
                 if (purchase[i].Client.UniqueId == client.UniqueId)
@@ -456,7 +456,7 @@
         {
             Console.WriteLine("Please type ID/NAME to search by:");
             string searchBy = ReadString().ToUpper();
-            if(searchBy == "ID")
+            if (searchBy == "ID")
             {
                 Console.WriteLine("Enter Product ID:");
                 int productId = ReadInteger(100000, 999999);
@@ -477,7 +477,7 @@
                 }
                 Console.WriteLine("Product not found!");
             }
-            else if(searchBy == "NAME")
+            else if (searchBy == "NAME")
             {
                 Console.WriteLine("Enter Product Name:");
                 string name = ReadString();
@@ -498,12 +498,13 @@
                 }
                 Console.WriteLine("Product not found!");
             }
-            else {
+            else
+            {
                 Console.WriteLine("Please enter only ID or NAME");
                 return;
             }
-            
-           
+
+
         }
 
         //function to display all products sorted by ID -@Pratiksha
