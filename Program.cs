@@ -343,22 +343,21 @@
             Console.WriteLine($"Purchases for Client: {client.FirstName} {client.LastName}");
 
             for (int i = 0; i < purchasesCount; i++)
-            {
-                Purchase p = purchase[i];
+            
 
                 // Check if the purchase belongs to the specified client
-                if (p.Client.UniqueId == client.UniqueId)
+                if (purchase[i].Client.UniqueId == client.UniqueId)
                 {
 
-                    Console.WriteLine($"Client: {p.Client.FirstName} {p.Client.LastName}");
+                    Console.WriteLine($"Client: {purchase[i].Client.FirstName} {purchase[i].Client.LastName}");
                     Console.WriteLine($"Products Purchased:");
 
-                    foreach (Product product in p.Products)
+                    foreach (Product product in purchase[i].Products)
                     {
                         Console.WriteLine($"  - {product.Name}: ${product.UnitPrice} x Qty:{product.QuantityAvailable}");
                     }
 
-                    Console.WriteLine($"Subtotal: ${p.Subtotal}, Taxes: ${p.Taxes}, Total Price: ${p.TotalPrice}");
+                    Console.WriteLine($"Subtotal: ${purchase[i].Subtotal}, Taxes: ${purchase[i].Taxes}, Total Price: ${purchase[i].TotalPrice}");
                     Console.WriteLine();
                 }
             }
