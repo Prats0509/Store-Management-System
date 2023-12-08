@@ -451,7 +451,7 @@
 
         }
 
-        //function to modify one product -@Gurleen
+        //function to modify one product -@Gurleen and -@Pratiksha
         static void ModifyOneProduct()
         {
             Console.WriteLine("Please type ID/NAME to search by:");
@@ -461,7 +461,7 @@
                 Console.WriteLine("Enter Product ID:");
                 int productId = ReadInteger(100000, 999999);
 
-                //for loop to go through the products and match -@Gurleen and -Pratiksha
+                //for loop to go through the products and match -@Gurleen 
                 for (int i = 0; i < product.Length; i++)
                 {
                     if (product[i].UniqueId == productId)
@@ -482,7 +482,7 @@
                 Console.WriteLine("Enter Product Name:");
                 string name = ReadString();
 
-                //for loop to go through the products and match -@Gurleen and -Pratiksha
+                //for loop to go through the products and match  -@Pratiksha
                 for (int i = 0; i < product.Length; i++)
                 {
                     if (product[i].Name == name)
