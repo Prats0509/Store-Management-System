@@ -1,6 +1,6 @@
 
-# Store Dutta Matta
-Author: Pratiksha Dutta and Gurleen Kaur Matta
+# Store Management System
+The Store Management System project, is a comprehensive application designed to facilitate the management of essential store operations. This project showcases an effective approach to handling various aspects of store administration, such as employee management, client registration and authentication, and robust product inventory control. The system aims to streamline store processes, enhance productivity, and provide a user-friendly interface for both employees and clients.
 ## Note:
 - The point of entry : StartProgram() function
 - Added name after logging (Bonus)
